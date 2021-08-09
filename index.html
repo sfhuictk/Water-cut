@@ -1,0 +1,2447 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>停水申请审批表</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <script type="text/javascript" src="jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="qrcode.js"></script>
+    <style>
+        #container {
+            height: 100%;
+            width: 100%;
+            font-family: "黑体";
+        }
+
+        #fixed {
+            position: relative;
+            width: 0;
+            height: 0;
+        }
+
+        #qrcode {
+            background: white;
+            position: absolute;
+            z-index: 1000;
+        }
+
+        #tip {
+            position: absolute;
+            z-index: 1000;
+        }
+
+        ruby {
+            ruby-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: none;
+            table-layout: fixed;
+            width: 21cm;
+            height: 29.7cm;
+            /* position: absolute; */
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .style0 {
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "等线", "sans-serif";
+            border: none;
+        }
+
+        .font0 {
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "等线", "sans-serif";
+        }
+
+        .font1 {
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .font2 {
+            color: #000000;
+            font-size: 20pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .font3 {
+            color: #000000;
+            font-size: 9pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "等线", "monospace";
+        }
+
+        .font4 {
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .font5 {
+            color: #000000;
+            font-size: 16pt;
+            font-weight: 700;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .font6 {
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .font7 {
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+        }
+
+        .font8 {
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: underline;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+        }
+
+        .font9 {
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+        }
+
+        .font10 {
+            color: #000000;
+            font-size: 20pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "方正小标宋简体", "cursive";
+        }
+
+        .font11 {
+            color: #000000;
+            font-size: 14pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "方正小标宋简体", "cursive";
+        }
+
+        td {
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "等线", "sans-serif";
+            border: none;
+        }
+
+        .style0 {
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "等线", "sans-serif";
+        }
+
+        .style1 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style2 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style3 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style4 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style5 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style6 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style7 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style8 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style9 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style10 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style11 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style12 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style13 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style14 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .x15 {
+
+
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "等线", "sans-serif";
+        }
+
+        .style16 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style17 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style18 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style19 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .style20 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: white;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "Arial", "sans-serif";
+        }
+
+        .x21 {
+
+
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 20pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x22 {
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x23 {
+
+
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x24 {
+
+
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        .x25 {
+
+
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: none;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        .x26 {
+
+
+            text-align: center;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 16pt;
+            font-weight: 700;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x27 {
+
+
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x28 {
+
+
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x29 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #F2F2F2;
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x30 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x31 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x32 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            padding-left: 8px;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x33 {
+
+
+            text-align: right;
+            vertical-align: middle;
+            white-space: nowrap;
+            padding-right: 16px;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x34 {
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x35 {
+
+
+            text-align: left;
+            vertical-align: top;
+            white-space: normal;
+            word-wrap: break-word;
+            padding-left: 8px;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x36 {
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x37 {
+
+
+            text-align: left;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x38 {
+
+
+            text-align: left;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: none;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        .x39 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x40 {
+
+
+            text-align: left;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x41 {
+
+
+            text-align: left;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x42 {
+
+
+            text-align: right;
+            vertical-align: middle;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x43 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x44 {
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x45 {
+            text-align: right;
+            vertical-align: middle;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x46 {
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x47 {
+
+
+            text-align: center;
+            vertical-align: bottom;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 16pt;
+            font-weight: 700;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x48 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x49 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x50 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x51 {
+
+
+            text-align: right;
+            vertical-align: top;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x52 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x53 {
+
+
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x54 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x55 {
+
+
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x56 {
+
+
+            text-align: general;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x57 {
+
+
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x58 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x59 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x60 {
+
+
+            text-align: general;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+        }
+
+        .x61 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #F2F2F2;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x62 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x63 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x64 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #F2F2F2;
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x65 {
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x66 {
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x67 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x68 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x69 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x70 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x71 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x72 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x73 {
+            text-align: left;
+            vertical-align: top;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x74 {
+            text-align: right;
+            vertical-align: bottom;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+        }
+
+        .x75 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #F2F2F2;
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        .x76 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #F2F2F2;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        .x77 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #F2F2F2;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x78 {
+
+
+            text-align: left;
+            vertical-align: top;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x79 {
+
+
+            text-align: left;
+            vertical-align: top;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x80 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: underline;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x81 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: normal;
+            word-wrap: break-word;
+            background: #F2F2F2;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x82 {
+
+
+            text-align: left;
+            vertical-align: top;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x83 {
+
+
+            text-align: left;
+            vertical-align: top;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x84 {
+
+
+            text-align: center;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 4px double;
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x85 {
+            text-align: center;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #F2F2F2;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid #A6A6A6;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x86 {
+            text-align: center;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #F2F2F2;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid #A6A6A6;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x87 {
+
+
+            text-align: center;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #F2F2F2;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid #A6A6A6;
+            border-right: 1px solid #A6A6A6;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x88 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        .x89 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x90 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x91 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid;
+        }
+
+        .x92 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x93 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 12pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "仿宋", "monospace";
+            padding: 2px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x94 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #F2F2F2;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid #A6A6A6;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x95 {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #F2F2F2;
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid #A6A6A6;
+            border-right: none;
+            border-bottom: 1px solid;
+            border-left: 1px solid #A6A6A6;
+        }
+
+        .x96 {
+
+
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #F2F2F2;
+
+            color: #000000;
+            font-size: 11pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid #A6A6A6;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x97 {
+
+
+            text-align: left;
+            vertical-align: top;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            border-left: none;
+        }
+
+        .x98 {
+
+
+            text-align: left;
+            vertical-align: top;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        .x99 {
+
+
+            text-align: left;
+            vertical-align: top;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x100 {
+
+
+            text-align: left;
+            vertical-align: top;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x101 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        .x102 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x103 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x104 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: none;
+            border-right: none;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        .x105 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+        }
+
+        .x106 {
+
+
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 10pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "微软雅黑 Light", "sans-serif";
+            padding: 1px;
+            border-top: none;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x107 {
+
+
+            text-align: center;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 20pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "方正小标宋简体", "cursive";
+            border-top: none;
+            border-right: none;
+            border-bottom: 4px double;
+            border-left: none;
+        }
+
+        .x108 {
+
+
+            text-align: center;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+            color: #000000;
+            font-size: 14pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "方正小标宋简体", "cursive";
+            border-top: 1px solid;
+            border-right: 1px solid;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .x109 {
+            text-align: center;
+            vertical-align: bottom;
+            white-space: nowrap;
+            background: #FFFFFF;
+
+            color: #000000;
+            font-size: 14pt;
+            font-weight: 400;
+            font-style: normal;
+            font-family: "方正小标宋简体", "cursive";
+            border-top: 1px solid;
+            border-right: none;
+            border-bottom: none;
+            border-left: 1px solid;
+        }
+
+        textarea,
+        select,
+        input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+        }
+
+        input {
+            height: 100%;
+            width: 100%;
+            font-family: "等线";
+        }
+
+        input [type="text"],
+        [type="datetime-local"] {
+            padding-left: 4px;
+            padding-right: 4px;
+            border: 0;
+            outline: none;
+        }
+
+        textarea {
+            padding-left: 4px;
+            padding-right: 4px;
+            font-family: "等线";
+        }
+
+        select {
+            height: 100%;
+            width: 100%;
+        }
+
+        a {
+            display: none;
+        }
+
+        @media print {
+
+            input,
+            select {
+                display: none !important;
+            }
+
+            a {
+                font-family: "微软雅黑 Light", "sans-serif";
+                display: inline;
+            }
+
+            button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <table id="table" cellpadding='0' cellspacing='0' width='739'>
+        <col class='x23' width='10' style='width:7.5pt'>
+        <col class='x60' width='114' span='6' style='width:85.5pt'>
+        <col class='x60' width='10' style='width:7.5pt'>
+        <tr height='35' style='height:26.25pt' id='r0'>
+            <td colspan='8' class='x107' width='704' style='border:none'>
+                <span
+                    style='font-size:20pt;color:#000000;font-weight:400;text-decoration:none;font-family:"方正小标宋简体";'>停水申请审批表</span>
+            </td>
+        </tr>
+        <tr style='height:10pt'></tr>
+        <tr height='30' style='height:20pt' id='r2'>
+            <td class='x24'></td>
+            <td class='x108'>申请</td>
+            <td colspan='6' class='x86' style='border-right:1px solid #A6A6A6;border-top:1px solid #A6A6A6;'>
+                <a id='company'></a>
+                <input id='companyInput' type="text" style="text-align: center;" value="普洱市达洱盛工程有限公司">
+            </td>
+        </tr>
+        <tr height='10' style='height:7.5pt' id='r3'>
+            <td class='x25'></td>
+            <td class='x26'></td>
+            <td class='x27'></td>
+            <td class='x27'></td>
+            <td class='x27'></td>
+            <td class='x27'></td>
+            <td class='x27'></td>
+            <td class='x28'></td>
+        </tr>
+        <tr height='30' style='height:20pt' id='r4'>
+            <td class='x25'></td>
+            <td class='x29' style='border:1px solid #A6A6A6'>责任人</td>
+            <td class='x62' style='border:1px solid #A6A6A6'>
+                <a id="responsible"></a>
+                <input id="responsibleInput" type="text" style="text-align: center;"></input>
+            </td>
+            <td class='x29' style='border:1px solid #A6A6A6'>停水管径</td>
+            <td class='x62' style='border:1px solid #A6A6A6'>
+                <a id="caliber"></a>
+                <select id="caliberInput">
+                    <option value="DN63">DN63</option>
+                    <option value="DN110">DN110</option>
+                    <option value="DN150">DN150</option>
+                    <option value="DN200" selected="selected">DN200</option>
+                    <option value="DN300">DN300</option>
+                </select>
+            </td>
+            <td class='x61' style='border:1px solid #A6A6A6'>日期</td>
+            <td class='x30' style='border:1px solid #A6A6A6'>
+                <a id="date"></a>
+                <input id="dateInput" type="date">
+            </td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='30' style='height:20pt' id='r5'>
+            <td class='x25'></td>
+            <td class='x29' style='border:1px solid #A6A6A6'>停水事由</td>
+            <td colspan='5' class='x66' style='border:1px solid #A6A6A6'>
+                <a id="reason" style="padding: 4px;"></a>
+                <input id="reasonInput" type="text" style="text-align: left;"></input>
+            </td>
+            <td class='x32'></td>
+        </tr>
+        <tr height='30' style='height:20pt' id='r6'>
+            <td class='x25'></td>
+            <td rowspan='3' height='239' class='x64' style='border:1px solid #A6A6A6'>停水地点</td>
+            <td class='x29' style='border:1px solid #A6A6A6'>位置描述</td>
+            <td colspan='4' class='x65' style='border:1px solid #A6A6A6'>
+                <a id="location" style="padding: 4px;"></a>
+                <input id="locationInput" type="text" />
+            </td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='181' style='height:135.75pt' id='r7'>
+            <td class='x25'></td>
+            <td colspan='5' rowspan='2' height='210' class='x88' style='border:1px solid #A6A6A6;padding: 1px;'>
+                <div id="fixed"></div>
+                <div id="qrcode"></div>
+                <div id='container' style="width:100%; height: 100%;">
+                    <div id="tip" class="info" style="min-width:auto;cursor:pointer;">
+                        <img src="https://webapi.amap.com/theme/v1.3/markers/n/mark_bs.png"
+                            style="width: 8px; height: 13px;">
+                        施工位置
+                    </div>
+                </div>
+            </td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='30' style='height:20pt' id='r8'>
+            <td class='x25'></td>
+            <td class='x33'></td>
+        </tr>
+        <tr height='30' style='height:20pt' id='r9'>
+            <td class='x25'></td>
+            <td class='x29' style='border:1px solid #A6A6A6'>申请停水时间</td>
+            <td colspan='2' class='x69' style='border:1px solid #A6A6A6;border-right: none;'>
+                <a id="startTime"></a>
+                <input id="startTimeInput" type="datetime-local">
+            </td>
+            <td class='x63' style='border:1px solid #A6A6A6;border-left: none;border-right: none;'>至</td>
+            <td colspan='2' class='x71' style='border:1px solid #A6A6A6;border-left: none;'>
+                <a id="finishTime"></a>
+                <input id="finishTimeInput" type="datetime-local">
+            </td>
+            <td class='x34'></td>
+        </tr>
+        <tr height='90' style='height:67.5pt' id='r10'>
+            <td class='x25'></td>
+            <td class='x29' style='border:1px solid #A6A6A6'>施工方案</td>
+            <td colspan='5' class='x73' style='border:1px solid #A6A6A6'>
+                <textarea maxlength="280"
+                    style="width: 100%;height: 100%;border: none;outline: none;resize:none;padding: 2px;overflow-y:hidden">
+1、施工准备；
+2、排空管内余水；
+3、搭接新管道；
+4、检查严密性后恢复供水。</textarea>
+            </td>
+            <td class='x35'></td>
+        </tr>
+        <tr height='25' class='x40' style='height:18.75pt' id='r11'>
+            <td class='x38'></td>
+            <td colspan='6' class='x74'><span style='float:right'>※停水损失及相关工程费用：施工费用由用户承担。</span></td>
+            <td class='x39'></td>
+        </tr>
+        <tr height='10' class='x40' style='height:7.5pt' id='r12'>
+            <td class='x41'></td>
+            <td class='x42'></td>
+            <td class='x42'></td>
+            <td class='x43'></td>
+            <td class='x43'></td>
+            <td class='x43'></td>
+            <td class='x43'></td>
+            <td class='x44'></td>
+        </tr>
+        <tr height='25' class='x40' style='height:18.75pt' id='r13'>
+            <td class='x37'></td>
+            <td class='x45'></td>
+            <td class='x45'></td>
+            <td class='x46'></td>
+            <td class='x46'></td>
+            <td class='x46'></td>
+            <td class='x46'></td>
+            <td class='x46'></td>
+        </tr>
+        <tr height='30' style='height:20pt' id='r14'>
+            <td colspan='6' class='x95' style='border-right:1px solid ;border-bottom:1px solid ;'>
+                普洱市水务有限责任公司</td>
+            <td class='x109'>批复</td>
+            <td class='x50'></td>
+        </tr>
+        <tr height='10' style='height:7.5pt' id='r15'>
+            <td class='x25'></td>
+            <td class='x47'></td>
+            <td class='x48'></td>
+            <td class='x49'></td>
+            <td class='x49'></td>
+            <td class='x49'></td>
+            <td class='x46'></td>
+            <td class='x39'></td>
+        </tr>
+        <tr height='50' style='height:37.5pt' id='r16'>
+            <td class='x25'></td>
+            <td rowspan='4' height='197' class='x75' style='border:1px solid #A6A6A6'>管网维护部<br>意见</td>
+            <td colspan='2' class='x82' style='border:1px solid #A6A6A6'>是否同意：
+            </td>
+            <td colspan='3' class='x82' style='border:1px solid #A6A6A6'>不同意原因：
+            </td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='67' style='height:50.25pt' id='r17'>
+            <td class='x25'></td>
+            <td colspan='3' class='x78' style='border:1px solid #A6A6A6'>影响管段:</td>
+            <td colspan='2' class='x82' style='border:1px solid #A6A6A6'>
+                安排停水时间：</td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='50' style='height:37.5pt' id='r18'>
+            <td class='x25'></td>
+            <td colspan='5' class='x98' style='border:1px solid #A6A6A6;border-bottom: none;'>其他意见：</td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='31' style='height:23.25pt' id='r19'>
+            <td class='x25'></td>
+            <td class='x51' style='border-bottom:1px solid #A6A6A6'></td>
+            <td colspan='2' class='x80' style='border-bottom:1px solid #A6A6A6'></td>
+            <td class='x52' style='border-bottom:1px solid #A6A6A6'>签字：</td>
+            <td class='x53' style='border-bottom:1px solid #A6A6A6;border-right: 1px solid #A6A6A6;'>日期：</td>
+            <td class='x54'></td>
+        </tr>
+        <tr height='50' style='height:37.5pt' id='r20'>
+            <td class='x25'></td>
+            <td rowspan='4' height='183' class='x81' style='border:1px solid #A6A6A6'>营销部<br>意见</td>
+            <td colspan='2' class='x82' style='border:1px solid #A6A6A6'>是否同意：
+            </td>
+            <td colspan='3' class='x82' style='border:1px solid #A6A6A6'>不同意原因：
+            </td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='50' style='height:37.5pt' id='r21'>
+            <td class='x25'></td>
+            <td colspan='5' class='x82' style='border:1px solid #A6A6A6'>
+                影响片区及人数：</td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='50' style='height:37.5pt' id='r22'>
+            <td class='x25'></td>
+            <td colspan='5' class='x98' style='border:1px solid #A6A6A6;border-bottom: none;'>其他意见：</td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='35' style='height:26.25pt' id='r23'>
+            <td class='x25'></td>
+            <td colspan='3' class='x80' style='border-bottom:1px solid #A6A6A6'></td>
+            <td class='x52' style='border-bottom:1px solid #A6A6A6'>签字：</td>
+            <td class='x53' style='border-bottom:1px solid #A6A6A6;border-right: 1px solid #A6A6A6;'>日期：</td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='50' style='height:37.5pt' id='r24'>
+            <td class='x25'></td>
+            <td rowspan='3' height='148' class='x64' style='border:1px solid #A6A6A6'>
+                领导批示</td>
+            <td colspan='5' rowspan='2' height='99' class='x101' style='border:1px solid #A6A6A6;border-bottom:none;'>
+            </td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='50' style='height:37.5pt' id='r25'>
+            <td class='x25'></td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='50' style='height:37.5pt' id='r26'>
+            <td class='x25'></td>
+            <td colspan="3" class='x55' style='border-bottom:1px solid #A6A6A6;'></td>
+            <td class='x52' style='border-bottom:1px solid #A6A6A6;'>签字：</td>
+            <td class='x53' style='border-bottom:1px solid #A6A6A6;border-right:1px solid #A6A6A6;'>日期：</td>
+            <td class='x31'></td>
+        </tr>
+        <tr height='10' style='height:7.5pt' id='r27'>
+            <td class='x57'></td>
+            <td class='x58'></td>
+            <td class='x58'></td>
+            <td class='x58'></td>
+            <td class='x58'></td>
+            <td class='x58'></td>
+            <td class='x58'></td>
+            <td class='x59'></td>
+        </tr>
+    </table>
+    <button style="position: fixed;top: 10px;right: calc(50% - 12cm);" onclick="printpage()">打印</button>
+    <script language='javascript' type='text/javascript'>
+        function printpage() {
+            window.print();
+        }
+
+        var beforePrint = function () {
+            $("#company").text($("#companyInput").val());
+            $("#responsible").text($("#responsibleInput").val());
+            $("#caliber").text($("#caliberInput").val());
+            $("#date").text($("#dateInput").val());
+            $("#reason").text($("#reasonInput").val());
+            $("#location").text($("#locationInput").val());
+            $("#startTime").text($("#startTimeInput").val().replace("T"," "));
+            $("#finishTime").text($("#finishTimeInput").val().replace("T"," "));
+        };
+
+        if (window.matchMedia) {
+            var mediaQueryList = window.matchMedia('print');
+            mediaQueryList.addListener(function (mql) {
+                if (mql.matches) {
+                    beforePrint()
+                } else {
+                    // afterPrint();
+                }
+            });
+        }
+    </script>
+</body>
+<script type="text/javascript"
+    src="https://webapi.amap.com/maps?v=1.4.13&key=41f7d76bf0acc9e33fb3d0e054b5b585"></script>
+<script type="text/javascript" src="app.js"></script>
+
+</html>
