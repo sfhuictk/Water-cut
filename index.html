@@ -38,7 +38,7 @@
 
         table {
             border-collapse: collapse;
-            border: none;
+            border-style: 1px dashed;
             table-layout: fixed;
             width: 21cm;
             height: 29.7cm;
@@ -2109,24 +2109,45 @@
 
         textarea,
         select,
-        input {
+        input,
+        input[type='text'],
+        input[type='date'],
+        input[type='datetime-local'] {
             -webkit-appearance: none;
             -moz-appearance: none;
             -o-appearance: none;
             appearance: none;
-        }
-
-        input {
             height: 100%;
             width: 100%;
-            font-family: "等线";
-        }
-
-        input [type="text"],
-        [type="datetime-local"] {
             padding-left: 4px;
             padding-right: 4px;
             border: 0;
+            outline: none;
+            background: transparent;
+        }
+
+
+        textarea:focus,
+        select:focus,
+        input:focus,
+        input[type='text']:focus,
+        input[type='date']:focus,
+        input[type='datetime-local']:focus {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            border: 0;
+            outline: none;
+            background: #54ffe834;
+        }
+
+        input[type="text"] {
+            height: 100%;
+            width: 100%;
+            background: transparent;
+            font-family: "等线";
+            border: none;
             outline: none;
         }
 
@@ -2134,11 +2155,6 @@
             padding-left: 4px;
             padding-right: 4px;
             font-family: "等线";
-        }
-
-        select {
-            height: 100%;
-            width: 100%;
         }
 
         a {
@@ -2181,7 +2197,7 @@
             <td class='x108'>申请</td>
             <td colspan='6' class='x86' style='border-right:1px solid #A6A6A6;border-top:1px solid #A6A6A6;'>
                 <a id='company'></a>
-                <input id='companyInput' type="text" style="text-align: center;" value="普洱市达洱盛工程有限公司">
+                <input id='companyInput' tabindex="9" type="text" style="text-align: center;" value="普洱市达洱盛工程有限公司">
             </td>
         </tr>
         <tr height='10' style='height:7.5pt' id='r3'>
@@ -2199,12 +2215,14 @@
             <td class='x29' style='border:1px solid #A6A6A6'>责任人</td>
             <td class='x62' style='border:1px solid #A6A6A6'>
                 <a id="responsible"></a>
-                <input id="responsibleInput" type="text" style="text-align: center;"></input>
+                <input id="responsibleInput" tabindex="1" type="text" style="text-align: center;"></input>
             </td>
             <td class='x29' style='border:1px solid #A6A6A6'>停水管径</td>
             <td class='x62' style='border:1px solid #A6A6A6'>
                 <a id="caliber"></a>
-                <select id="caliberInput">
+                <input id="caliberInput" tabindex="2" type="text" style="text-align: center;display: none;" />
+                <select id="caliberSelect" tabindex="2">
+                    <option value="type">手动输入</option>
                     <option value="DN63">DN63</option>
                     <option value="DN110">DN110</option>
                     <option value="DN150">DN150</option>
@@ -2215,7 +2233,7 @@
             <td class='x61' style='border:1px solid #A6A6A6'>日期</td>
             <td class='x30' style='border:1px solid #A6A6A6'>
                 <a id="date"></a>
-                <input id="dateInput" type="date">
+                <input id="dateInput" tabindex="3" type="date">
             </td>
             <td class='x31'></td>
         </tr>
@@ -2224,7 +2242,7 @@
             <td class='x29' style='border:1px solid #A6A6A6'>停水事由</td>
             <td colspan='5' class='x66' style='border:1px solid #A6A6A6'>
                 <a id="reason" style="padding: 4px;"></a>
-                <input id="reasonInput" type="text" style="text-align: left;"></input>
+                <input id="reasonInput" tabindex="4" type="text" style="text-align: left;"></input>
             </td>
             <td class='x32'></td>
         </tr>
@@ -2234,7 +2252,7 @@
             <td class='x29' style='border:1px solid #A6A6A6'>位置描述</td>
             <td colspan='4' class='x65' style='border:1px solid #A6A6A6'>
                 <a id="location" style="padding: 4px;"></a>
-                <input id="locationInput" type="text" />
+                <input id="locationInput" tabindex="5" type="text" />
             </td>
             <td class='x31'></td>
         </tr>
@@ -2262,12 +2280,12 @@
             <td class='x29' style='border:1px solid #A6A6A6'>申请停水时间</td>
             <td colspan='2' class='x69' style='border:1px solid #A6A6A6;border-right: none;'>
                 <a id="startTime"></a>
-                <input id="startTimeInput" type="datetime-local">
+                <input id="startTimeInput" tabindex="6" type="datetime-local">
             </td>
             <td class='x63' style='border:1px solid #A6A6A6;border-left: none;border-right: none;'>至</td>
             <td colspan='2' class='x71' style='border:1px solid #A6A6A6;border-left: none;'>
                 <a id="finishTime"></a>
-                <input id="finishTimeInput" type="datetime-local">
+                <input id="finishTimeInput" tabindex="7" type="datetime-local">
             </td>
             <td class='x34'></td>
         </tr>
@@ -2275,7 +2293,7 @@
             <td class='x25'></td>
             <td class='x29' style='border:1px solid #A6A6A6'>施工方案</td>
             <td colspan='5' class='x73' style='border:1px solid #A6A6A6'>
-                <textarea maxlength="280"
+                <textarea tabindex="8" maxlength="280"
                     style="width: 100%;height: 100%;border: none;outline: none;resize:none;padding: 2px;overflow-y:hidden">
 1、施工准备；
 2、排空管内余水；
@@ -2417,15 +2435,47 @@
             window.print();
         }
 
+        function setDefaultDate() {
+            var nowDate = new Date();
+            var month = nowDate.getMonth() + 1;
+            var day = nowDate.getDate();
+            month = (month.toString().length == 1) ? ("0" + month) : month;
+            day = (day.toString().length == 1) ? ("0" + day) : day;
+            //当前日期 yyyy-MM-dd
+            return nowDate.getFullYear() + '-' + month + '-' + day;
+        }
+
+        $(document).ready(function () {
+            $("#caliberSelect").change(function () {
+                var selected = $(this).children('option:selected').val();
+                if (selected == 'type') {
+                    $("#caliberSelect").hide();
+                    $("#caliberInput").show();
+                    $("#caliberInput").val('').focus().val("DN");
+                }
+            });
+            $("#caliberInput").blur(function () {
+                var selected = $(this).val();
+                if (selected == '') {
+                    $("#caliberInput").hide();
+                    $("#caliberSelect").val("DN200");
+                    $("#caliberSelect").show();
+                }
+            });
+
+
+            $("#dateInput").val(setDefaultDate());
+        });
+
         var beforePrint = function () {
             $("#company").text($("#companyInput").val());
             $("#responsible").text($("#responsibleInput").val());
-            $("#caliber").text($("#caliberInput").val());
+            $("#caliber").text($("#caliberInput").val() ? $("#caliberInput").val() : $("#caliberSelect").val());
             $("#date").text($("#dateInput").val());
             $("#reason").text($("#reasonInput").val());
             $("#location").text($("#locationInput").val());
-            $("#startTime").text($("#startTimeInput").val().replace("T"," "));
-            $("#finishTime").text($("#finishTimeInput").val().replace("T"," "));
+            $("#startTime").text($("#startTimeInput").val().replace("T", " "));
+            $("#finishTime").text($("#finishTimeInput").val().replace("T", " "));
         };
 
         if (window.matchMedia) {
